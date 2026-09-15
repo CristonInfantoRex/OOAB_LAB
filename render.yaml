@@ -1,0 +1,22 @@
+# Render Blueprint deployment configuration for HemoLife Blood Bank Platform
+# https://render.com/docs/blueprint-spec
+
+services:
+  # Web Service (Docker Build)
+  - type: web
+    name: hemolife-blood-bank
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CLIENT_URL
+        sync: false
